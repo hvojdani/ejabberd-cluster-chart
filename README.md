@@ -31,10 +31,6 @@ because we need to change image entrypoint to our 'start.sh' script
       pullPolicy: IfNotPresent
       pullSecret: regcred
     
-    service:
-      type: ClusterIP
-      port: 80
-
 
 # Accessing to ejabberd
 both admin panel and xmpp can be accessed by node ports 
