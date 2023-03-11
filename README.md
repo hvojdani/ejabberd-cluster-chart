@@ -4,7 +4,10 @@ this project is a workgound for deploying ejabberd cluster helm chart to kuberne
 first build a docker image from ejabberd/ecs base image
 because we need to change image entrypoint to our 'start.sh' script
 
-# Building image
+# Docker Image
+  use latest image and tags 
+    https://hub.docker.com/r/hv86/ejabberd-cluster
+## Building your image
     cd docker
     docker build . --tag myregistery/ejabberd-custom:0.1.2
     docker push myregistery/ejabberd-custom:0.1.2
@@ -16,8 +19,8 @@ because we need to change image entrypoint to our 'start.sh' script
 # Chart values and defaults
 
     replicaCount: 3    
-    adminPassword: asd
-    cookieName: dummycookie123
+    adminPassword: admin
+    cookieName: ejabberdcookie
     
     storage:
       className: null
@@ -26,10 +29,10 @@ because we need to change image entrypoint to our 'start.sh' script
       uploadSize: 250Mi
     
     image:
-      repository: myregistry/ejabberd-custom
-      tag: 0.0.1
+      repository: hv86/ejabberd-cluster:1.0.0
+      tag: 1.0.0
       pullPolicy: IfNotPresent
-      pullSecret: regcred
+      pullSecret: null
     
 
 # Accessing to ejabberd

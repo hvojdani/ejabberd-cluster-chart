@@ -1,7 +1,7 @@
 replicaCount: 3
 
-adminPassword: asd
-cookieName: dummycookie123
+adminPassword: admin
+cookieName: ejabberdcookie
 
 storage:
   className: null
@@ -10,10 +10,10 @@ storage:
   uploadSize: 250Mi
 
 image:
-  repository: myregistry/ejabberd-custom
-  tag: 0.0.1
+  repository: hv86/ejabberd-cluster:1.0.0
+  tag: 1.0.0
   pullPolicy: IfNotPresent
-  pullSecret: regcred
+  pullSecret: null
 
 resources: {}
   

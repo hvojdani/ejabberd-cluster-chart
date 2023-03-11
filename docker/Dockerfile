@@ -1,4 +1,4 @@
-FROM ejabberd/ecs:22.10
+FROM ejabberd/ecs:23.01
 RUN echo $HOME
 
 USER root
