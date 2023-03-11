@@ -13,7 +13,7 @@ because we need to change image entrypoint to our 'start.sh' script
     cd helm   
     helm install ejabberd . --set image.repository=myregistery/ejabberd-custom --set image.tag=0.1.2
 
-# Chart Parameters and defaults
+# Chart values and defaults
 
     replicaCount: 3    
     adminPassword: asd
