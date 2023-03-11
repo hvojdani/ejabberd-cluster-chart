@@ -1,4 +1,4 @@
-# Description
+# Goal
 this project is a workgound for deploying ejabberd cluster helm chart to kubernetes.   
 
 first build a docker image from ejabberd/ecs base image
@@ -44,3 +44,5 @@ both admin panel and xmpp can be accessed by node ports
  change service label to one of your pods labels if release name is 
  different from 'ejabberd' 
 
+# Add and edit users 
+ for adding and modifying users by rest api using Ejabberd.postman_collection.json postman collection can help
