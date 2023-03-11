@@ -1,12 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 podname="$(hostname)"
 export ERLANG_NODE_ARG="ejabberd@$podname.$HEADLESS_SVC"
 export ERL_MAX_PORTS=500000
 echo ERLANG_NODE_ARG is $ERLANG_NODE_ARG
 
-if [[ $podname == *-0 ]] 
-then
+if [[ $podname == *-0 ]]; then
    echo ============master Node==========   
    export CTL_ON_CREATE="register admin localhost $EJABBERD_ADMIN_PASS"
 else
