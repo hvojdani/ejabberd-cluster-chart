@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ejabberd.fullname" . }}
+  labels:
+{{ include "ejabberd.labels" . | indent 4 }}
+spec:
+  clusterIP: None
+  ports:
+    - name: c2s
+      port: 5222
+      protocol: TCP
+    - name: s2s
+      port: 5269
+      protocol: TCP
+    - name: adminhttp
+      port: 5280
+      protocol: TCP
+    - name: adminhttps
+      port: 5443
+      protocol: TCP
+    - name: mqtt
+      port: 1833
+      protocol: TCP
+  selector:
+    app: {{ template "ejabberd.name" . }}
+    release: {{ .Release.Name }}

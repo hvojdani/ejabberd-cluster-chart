@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "ejabberd.fullname" . }}
+  labels:
+{{ include "ejabberd.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  serviceName: {{ include "ejabberd.fullname" . }}
+  selector:
+    matchLabels:
+        app: {{ template "ejabberd.name" . }}
+        release: {{ .Release.Name }}
+  volumeClaimTemplates:
+    - metadata:
+        name: ejabber-data
+      spec:
+        accessModes: 
+          - ReadWriteOnce
+        {{- if .Values.storage.className }}
+        storageClassName: {{ .Values.storage.className}}
+        {{- end }}          
+        resources:
+          requests:
+            storage: {{ .Values.storage.dataSize}}
+    - metadata:
+        name: ejabber-logs
+      spec:
+        accessModes: 
+          - ReadWriteOnce
+        {{- if .Values.storage.className }}
+        storageClassName: {{ .Values.storage.className}}
+        {{- end }}          
+        resources:
+          requests:
+            storage: {{ .Values.storage.logSize}}
+    - metadata:
+        name: ejabber-uploads
+      spec:
+        accessModes: 
+          - ReadWriteOnce
+        {{- if .Values.storage.className }}
+        storageClassName: {{ .Values.storage.className}}
+        {{- end }}          
+        resources:
+          requests:
+            storage: {{ .Values.storage.uploadSize}}
+  template:
+    metadata:
+      labels:
+        app: {{ template "ejabberd.name" . }}
+        release: {{ .Release.Name }}
+#     annotations: 
+#       prometheus.io/scrape: 'true'
+#       prometheus.io/port: '80'
+#       prometheus.io/path: '/metrics'  
+    spec:  
+      {{- if .Values.image.pullSecret }}
+      imagePullSecrets:
+        - name: "{{ .Values.image.pullSecret }}"
+      {{- end }}  
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: EJABBERD_ADMIN_PASS
+              value: {{.Values.adminPassword | quote}}
+            - name: ERLANG_COOKIE
+              value: {{.Values.cookieName | quote}}
+            - name: HEADLESS_SVC
+              value: "{{ include "ejabberd.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local"
+          ports:
+            - name: c2s
+              containerPort: 5222
+              protocol: TCP
+            - name: s2s
+              containerPort: 5269
+              protocol: TCP
+            - name: adminhttp
+              containerPort: 5280
+              protocol: TCP
+            - name: adminhttps
+              containerPort: 5443
+              protocol: TCP
+            - name: mqtt
+              containerPort: 1833
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/home/ejabberd/database"
+              name: ejabber-data
+            - mountPath: "/home/ejabberd/logs" 
+              name: ejabber-logs
+            - mountPath: "/home/ejabberd/uploads" 
+              name: ejabber-uploads
+#          livenessProbe:
+#            httpGet:
+#              path: /swagger/index.html
+#              port: 30001
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

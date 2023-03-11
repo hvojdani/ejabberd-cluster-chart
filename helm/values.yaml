@@ -1,0 +1,28 @@
+replicaCount: 3
+
+adminPassword: asd
+cookieName: dummycookie123
+
+storage:
+  className: nfs-client
+  dataSize: 1Gi
+  logSize: 500Mi
+  uploadSize: 250Mi
+
+image:
+  repository: cr.radin.local/acs/ejabberd-radin
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+  pullSecret: regcred
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources: {}
+  
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

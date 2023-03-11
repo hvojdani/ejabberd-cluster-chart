@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "5fde03e3-04d4-4dd1-bd98-778160b46326",
+		"name": "Ejabberd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"bob\",\r\n    \"host\": \"localhost\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{address}}/api/register",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unregister",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"bob\",\r\n    \"host\": \"localhost\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{address}}/api/unregister",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"unregister"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth_list_tokens",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{address}}/api/oauth_list_tokens",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"oauth_list_tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "connected_users_number",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{address}}/api/connected_users_number",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"connected_users_number"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{address}}/api/status",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registered_users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{address}}/api/registered_users?host=localhost",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"registered_users"
+					],
+					"query": [
+						{
+							"key": "host",
+							"value": "localhost"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check_account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": \"hamed\",\r\n    \"host\": \"localhost\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{address}}/api/check_account",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"check_account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin@localhost",
+							"description": "full name user@domain",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "asd",
+							"type": "text"
+						},
+						{
+							"key": "ttl",
+							"value": "3600",
+							"description": "optional in second",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "ejabberd:admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{address}}/oauth/token",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "address",
+			"value": "https://10.51.12.45:30030",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "HqAtI8gyJ5ZeRnw14FqljuDRH6YjbnhN",
+			"type": "default"
+		}
+	]
+}

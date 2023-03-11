@@ -1,0 +1,3 @@
+ejabberd deployed 
+apply node port service if you need to use ejabberd outside your cluster
+     kubectl apply -f ejabberd-nodeports.yaml
