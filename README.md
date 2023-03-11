@@ -11,7 +11,29 @@ because we need to change image entrypoint to our 'start.sh' script
 
 # Installing helm chart
     cd helm   
-    helm install ejabberd . --set image.tag=0.1.2
+    helm install ejabberd . --set image.repository=myregistery/ejabberd-custom --set image.tag=0.1.2
+
+# Chart Parameters and defaults
+
+    replicaCount: 3    
+    adminPassword: asd
+    cookieName: dummycookie123
+    
+    storage:
+      className: null
+      dataSize: 1Gi
+      logSize: 500Mi
+      uploadSize: 250Mi
+    
+    image:
+      repository: myregistry/ejabberd-custom
+      tag: 0.0.1
+      pullPolicy: IfNotPresent
+      pullSecret: regcred
+    
+    service:
+      type: ClusterIP
+      port: 80
 
 
 # Accessing to ejabberd

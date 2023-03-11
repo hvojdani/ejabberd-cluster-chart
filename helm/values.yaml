@@ -4,13 +4,13 @@ adminPassword: asd
 cookieName: dummycookie123
 
 storage:
-  className: nfs-client
+  className: null
   dataSize: 1Gi
   logSize: 500Mi
   uploadSize: 250Mi
 
 image:
-  repository: cr.radin.local/acs/ejabberd-radin
+  repository: myregistry/ejabberd-custom
   tag: 0.0.1
   pullPolicy: IfNotPresent
   pullSecret: regcred
