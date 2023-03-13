@@ -7,7 +7,9 @@ because we need to change image entrypoint to our 'start.sh' script
 # Docker Image
   use latest image and tags 
     https://hub.docker.com/r/hv86/ejabberd-cluster
-## Building your image
+## Building your custom image
+You can modify start.sh and ejabberd.yml files and build your custom image
+
     cd docker
     docker build . --tag myregistery/ejabberd-custom:0.1.2
     docker push myregistery/ejabberd-custom:0.1.2
