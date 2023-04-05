@@ -39,7 +39,7 @@ Both admin panel and xmpp can be accessed by node ports
    xmpp: NodeIP:30031  
    adminPanelhttps:  https://NODE_IP:30030/admin
     
- # note:
+ ## note:
  Change service label to one of your pods labels in 'ejabberd-nodeports.yaml' if release name is 
  different from 'ejabberd' 
  
