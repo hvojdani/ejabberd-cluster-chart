@@ -7,12 +7,6 @@ because we need to change image entrypoint to our custom 'start.sh' script
 # Docker Image
   Use latest image and tags 
     https://hub.docker.com/r/hv86/ejabberd-cluster
-## Building your custom image
-You can modify start.sh and ejabberd.yml files and build your custom image
-
-    cd docker
-    docker build . --tag myregistery/ejabberd-custom:0.1.2
-    docker push myregistery/ejabberd-custom:0.1.2
 
 # Installing helm chart
     cd helm   
@@ -44,10 +38,18 @@ Both admin panel and xmpp can be accessed by node ports
 
    xmpp: NodeIP:30031  
    adminPanelhttps:  https://NODE_IP:30030/admin
-
- ## note:
- Change service label to one of your pods labels if release name is 
+    
+ # note:
+ Change service label to one of your pods labels in 'ejabberd-nodeports.yaml' if release name is 
  different from 'ejabberd' 
+ 
+
+## Building your custom image
+You can modify start.sh and ejabberd.yml files and build your custom image
+
+    cd docker
+    docker build . --tag myregistery/ejabberd-custom:0.1.2
+    docker push myregistery/ejabberd-custom:0.1.2
 
 # Add and edit users 
  For adding and modifying users by rest api Ejabberd.postman_collection.json postman collection can help
